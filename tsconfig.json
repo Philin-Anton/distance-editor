@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "none",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "outDir": "js",
+        "target": "es2015",
+        "jsx": "react"
+    },
+    "moduleResolution": "node",
+    "compileOnSave": true,
+    "filesGlob": [
+        "./src/*.tsx"
+    ]
+}

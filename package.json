@@ -1,0 +1,69 @@
+{
+  "name": "distance-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "node_modules/.bin/webpack-dev-server",
+    "build": "node_modules/.bin/webpack",
+    "prod": "npm run clean & npm run build",
+    "build:watch": "npm run clean & node_modules/.bin/webpack -w",
+    "clean": "rimraf ./dist/*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Philin-Anton/distance-editor.git"
+  },
+  "author": "Anton Philin, Paul Anosov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Philin-Anton/distance-editor/issues"
+  },
+  "homepage": "https://github.com/Philin-Anton/distance-editor#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "css-loader": "^0.28.4",
+    "es6-promise": "^4.1.1",
+    "eslint": "^4.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "html-webpack-plugin": "^2.29.0",
+    "node-sass": "^4.5.3",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1",
+    "sass-loader": "^6.0.6",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.2.2",
+    "typescript": "^2.4.1",
+    "webpack": "^3.1.0",
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-dev-server": "^2.5.1",
+    "webpack-notifier": "^1.5.0"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.10",
+    "@types/react": "^15.0.36",
+    "@types/react-dom": "^15.5.1",
+    "@types/react-hot-loader": "^3.0.3",
+    "@types/react-redux": "^4.4.46",
+    "@types/react-router": "^4.0.14",
+    "@types/react-router-dom": "^4.0.6",
+    "@types/redux": "^3.6.31",
+    "@types/redux-logger": "^3.0.0",
+    "@types/redux-thunk": "^2.1.0",
+    "@types/webpack-env": "^1.13.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "^1.3.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  }
+}
