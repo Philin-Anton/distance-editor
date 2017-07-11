@@ -23,7 +23,7 @@ function isExternal(module) {
 module.exports = {
     context: sourcePath,
     entry: {
-        "vendors-web": ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-thunk', 'react-hot-loader', 'react-router-dom'],
+        "vendors-web": ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-thunk', 'redux-logger', 'react-hot-loader', 'react-router-dom'],
         "app": "./index.tsx"
     },
     output: {
@@ -31,7 +31,7 @@ module.exports = {
         filename: "[name].bundle.js"
     },
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    devtool: "cheap-source-map",
     // resolve: {
     //     // Add '.ts' as resolvable extensions.
     //     extensions: [".ts", ".tsx", ".js", ".jsx"]
@@ -40,8 +40,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                use: ["source-map-loader"],
-                enforce: "pre"
+                use: ["babel-loader"]
             },
             {
                 test: /\.jsx$/,
@@ -106,6 +105,7 @@ module.exports = {
             "prop-types": "prop-types",
             "redux": "redux",
             "redux-thunk": "redux-thunk",
+            "redux-logger": "redux-logger",
             "react-hot-loader": "react-hot-loader",
             "react-redux": "react-redux",
             "react-dom": "react-dom",
