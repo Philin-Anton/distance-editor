@@ -8,7 +8,7 @@ import './style.scss';
 
 const App = () => (
   <main>
-    <div>asdsdas</div>
+    <div>1231232</div>
   </main>
 );
 

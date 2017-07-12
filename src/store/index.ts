@@ -1,14 +1,17 @@
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import * as logger from "redux-logger";
-import * as thunk from 'redux-thunk';
-
 import rootReducer from '../reducers/rootReducer.ts';
-const middleware:any = [thunk, logger];
 
-const store: any = createStore(
+const middleware:[any] = process.env.NODE_ENV === 'production' ?
+    [ thunk ]:
+    [ thunk, logger];
+
+const store:any = createStore(
   combineReducers(rootReducer),
-  compose(applyMiddleware(middleware))
+  compose(applyMiddleware(...middleware))
 );
+
 export default store;
 
 /**
@@ -22,13 +25,13 @@ export default store;
 store.asyncReducers = {};
 
 function replaceReducers(defaultReducers:any):void {
-  const merged: any = Object.assign({}, defaultReducers, store.asyncReducers);
+  const merged: any = (<any>Object).assign({}, defaultReducers, store.asyncReducers);
   const combined = combineReducers(merged);
   store.replaceReducer(combined);
 }
 
 export function injectAsyncReducers(asyncReducers:any) {
-  const injectReducers: any = Object.keys(asyncReducers).reduce((all, item) => {
+  const injectReducers: any = (<any>Object).keys(asyncReducers).reduce((all, item) => {
     if (store.asyncReducers[item]) {
       delete all[item];
     }
@@ -36,14 +39,14 @@ export function injectAsyncReducers(asyncReducers:any) {
     return all;
   }, asyncReducers);
 
-  store.asyncReducers = Object.assign({}, store.asyncReducers, injectReducers);
+  store.asyncReducers = (<any>Object).assign({}, store.asyncReducers, injectReducers);
   replaceReducers(rootReducer);
 }
 
 // hot reloading for reducers
 if (module.hot) {
   module.hot.accept('../reducers/rootReducer', () => {
-    const nextReducer: any = require('../reducers/rootReducer').default; // eslint-disable-line
+    const nextReducer:any = require('../reducers/rootReducer').default; // eslint-disable-line
     replaceReducers(nextReducer);
   });
 }

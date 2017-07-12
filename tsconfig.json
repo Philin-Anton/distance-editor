@@ -1,15 +1,25 @@
 {
     "compilerOptions": {
-        "module": "none",
-        "noImplicitAny": true,
+        "jsx": "react",
+        "target": "es6",
+        "noImplicitAny": false,
         "removeComments": true,
-        "sourceMap": true,
-        "outDir": "js",
-        "target": "es2015",
-        "jsx": "react"
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "pretty": true,
+        "baseUrl": "./src",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ]
     },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts?",
+        "dist"
+    ],
     "moduleResolution": "node",
-    "compileOnSave": true,
+    //"compileOnSave": true,
     "filesGlob": [
         "./src/*.tsx"
     ]
