@@ -1,7 +1,7 @@
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import rootReducer from '../reducers/rootReducer.ts';
+import rootReducer from '../reducers/rootReducer';
 
 const middleware:[any] = process.env.NODE_ENV === 'production' ?
     [ thunk ]:

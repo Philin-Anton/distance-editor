@@ -8,7 +8,7 @@ import './style.scss';
 
 const App = () => (
   <main>
-    <div>1231232</div>
+    <div>фывыф</div>
   </main>
 );
 

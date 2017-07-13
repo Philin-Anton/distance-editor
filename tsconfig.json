@@ -1,11 +1,15 @@
 {
     "compilerOptions": {
         "jsx": "react",
-        "target": "es6",
+        "target": "es5",
+        "lib": ["es6", "dom"],
         "noImplicitAny": false,
+        "noEmitOnError": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
         "pretty": true,
         "baseUrl": "./src",
         "typeRoots": [
@@ -15,12 +19,13 @@
     },
     "exclude": [
         "node_modules",
+        "typings",
         "**/*.spec.ts?",
         "dist"
     ],
-    "moduleResolution": "node",
-    //"compileOnSave": true,
+    "compileOnSave": true,
     "filesGlob": [
-        "./src/*.tsx"
+        "./src/*.tsx",
+        "./src/*.ts"
     ]
 }

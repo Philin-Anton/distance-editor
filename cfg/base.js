@@ -5,10 +5,13 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     context: sourcePath,
-  devtool: 'eval',
-  entry: {
+    devtool: 'eval',
+    entry: {
         "vendors-web": ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-thunk', 'redux-logger', 'react-hot-loader', 'react-router-dom'],
-        "app": "./index.tsx"
+        "app": [
+            'react-hot-loader/patch',
+            './index.tsx'
+        ]
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
@@ -18,11 +21,14 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "../dist"),
         compress: true,
-        historyApiFallback: true,
         noInfo: true,
         hot: true,
+        lazy: true,
         inline: true,
-        port: 8000
+        port: 8000,
+        open: true,
+        openPage: '',
+        publicPath: "http://localhost:8000/"
         // proxy: {
         //     "/subject": "http://localhost:8000",
         //     "/tag": "http://localhost:8000",
@@ -30,20 +36,21 @@ module.exports = {
         //     "/static": "http://localhost:8000"
         // }
     },
-  
+    resolve: {
+        // Add '.ts' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".jsx"]
+    },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                use: ["babel-loader"]
-            },
-            {
-                test: /\.jsx$/,
-                use: ["babel-loader"]
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['react-hot-loader/webpack', 'babel-loader']
             },
             {
                 test: /\.(ts|tsx)$/,
-                use: ["ts-loader"]
+                exclude: /node_modules/,
+                use: ['react-hot-loader/webpack', 'babel-loader', 'ts-loader']
             },
             {
                 test: /\.scss$/,

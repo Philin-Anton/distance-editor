@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 function isExternal(module) {
     const context = module.context;
@@ -24,6 +25,7 @@ const config = Object.assign({}, baseConfig, {
   cache: true,
   devtool: 'eval-source-map',
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.ProvidePlugin({
         "react": "react",
         "prop-types": "prop-types",
@@ -35,6 +37,9 @@ const config = Object.assign({}, baseConfig, {
         "react-dom": "react-dom",
         "react-router-dom": "react-router-dom",
         "Promise": 'imports?this=>global!exports?global.Promise!es6-promise'
+    }),
+    new webpack.HotModuleReplacementPlugin({
+      multiStep: true
     }),
     new WebpackNotifierPlugin({ alwaysNotify: true }),
     new webpack.optimize.CommonsChunkPlugin({

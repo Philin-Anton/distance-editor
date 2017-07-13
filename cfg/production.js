@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 function isExternal(module) {
     const context = module.context;
@@ -24,6 +25,7 @@ const config = Object.assign({}, baseConfig, {
   cache: true,
   devtool: "cheap-source-map",
   plugins: [
+    new ProgressBarPlugin(),
     new webpack.ProvidePlugin({
         "react": "react",
         "prop-types": "prop-types",
