@@ -23,7 +23,7 @@ function isExternal(module) {
 
 const config = Object.assign({}, baseConfig, {
   cache: true,
-  devtool: 'eval-source-map',  
+  devtool: 'cheap-source-map',
   plugins: [
     new webpack.ProvidePlugin({
         "react": "react",
@@ -36,16 +36,38 @@ const config = Object.assign({}, baseConfig, {
         "react-router-dom": "react-router-dom",
         "Promise": 'imports?this=>global!exports?global.Promise!es6-promise'
     }),
-    new WebpackNotifierPlugin({ alwaysNotify: true }),
-    new BundleAnalyzerPlugin({
-        analyzerMode: 'static'
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
+    new webpack.optimize.UglifyJsPlugin({
+        warnings: false,
+        toplevel: false,
+        ie8: false,
+        parallel: true,
+        compress: {
+            dead_code: true,
+            warnings: false,
+            drop_debugger: true,
+            unsafe_proto: true,
+            conditionals: true,
+            reduce_vars: true,
+            drop_console: true
+        },
+        output: {
+            comments: false,
+            beautify: false,
+        }
+    }),
+    new WebpackNotifierPlugin({ alwaysNotify: true }),
     new webpack.optimize.CommonsChunkPlugin({
         name: "manifest",
         chunks: Infinity,
          minChunks: function (module) {
             return isExternal(module);
         }
+    }),
+    new BundleAnalyzerPlugin({
+        analyzerMode: 'static'
     }),
     new HtmlWebpackPlugin({
         title: "Distance Editor",

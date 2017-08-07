@@ -40,12 +40,23 @@ const config = Object.assign({}, baseConfig, {
     }),
     new WebpackNotifierPlugin({ alwaysNotify: true }),
     new webpack.optimize.UglifyJsPlugin({
+        warnings: false,
+        toplevel: false,
+        ie8: false,
+        parallel: true,
         compress: {
+            dead_code: true,
             warnings: false,
+            drop_debugger: true,
+            unsafe_proto: true,
+            conditionals: true,
+            reduce_vars: true,
+            drop_console: true
         },
         output: {
             comments: false,
-        },
+            beautify: false,
+        }
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
