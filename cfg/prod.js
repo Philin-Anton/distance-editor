@@ -23,7 +23,7 @@ function isExternal(module) {
 
 const config = Object.assign({}, baseConfig, {
   cache: true,
-  devtool: 'eval-source-map',
+  devtool: "cheap-source-map",
   plugins: [
     new ProgressBarPlugin(),
     new webpack.ProvidePlugin({
@@ -38,18 +38,22 @@ const config = Object.assign({}, baseConfig, {
         "react-router-dom": "react-router-dom",
         "Promise": 'imports?this=>global!exports?global.Promise!es6-promise'
     }),
-    new webpack.HotModuleReplacementPlugin({
-      multiStep: true
-    }),
     new WebpackNotifierPlugin({ alwaysNotify: true }),
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false,
+        },
+        output: {
+            comments: false,
+        },
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpack.optimize.CommonsChunkPlugin({
         name: "manifest",
-        chunks: Infinity
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendors-web',
-        chunks: ['vendors-web'],
-        minChunks: function (module) {
+        chunks: Infinity,
+         minChunks: function (module) {
             return isExternal(module);
         }
     }),

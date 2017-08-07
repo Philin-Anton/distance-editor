@@ -7,7 +7,7 @@ module.exports = {
     context: sourcePath,
     devtool: 'eval',
     entry: {
-        "vendors-web": ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-thunk', 'redux-logger', 'react-hot-loader', 'react-router-dom'],
+        "manifest": ['react', 'react-dom', 'prop-types', 'react-redux', 'redux', 'redux-thunk', 'redux-logger', 'react-hot-loader', 'react-router-dom'],
         "app": [
             'react-hot-loader/patch',
             './index.tsx'
@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "../dist"),
-        filename: "[name].bundle.js",
+        filename: "assets/[name].bundle.js",
         publicPath: './'
     },
     devServer: {

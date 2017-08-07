@@ -23,15 +23,13 @@ function isExternal(module) {
 
 const config = Object.assign({}, baseConfig, {
   cache: true,
-  devtool: 'eval-source-map',
-  
+  devtool: 'eval-source-map',  
   plugins: [
     new webpack.ProvidePlugin({
         "react": "react",
         "prop-types": "prop-types",
         "redux": "redux",
         "redux-thunk": "redux-thunk",
-        "redux-logger": "redux-logger",
         "react-hot-loader": "react-hot-loader",
         "react-redux": "react-redux",
         "react-dom": "react-dom",
@@ -39,17 +37,13 @@ const config = Object.assign({}, baseConfig, {
         "Promise": 'imports?this=>global!exports?global.Promise!es6-promise'
     }),
     new WebpackNotifierPlugin({ alwaysNotify: true }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: "manifest",
-        chunks: Infinity
-    }),
     new BundleAnalyzerPlugin({
         analyzerMode: 'static'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendors-web',
-        chunks: ['vendors-web'],
-        minChunks: function (module) {
+        name: "manifest",
+        chunks: Infinity,
+         minChunks: function (module) {
             return isExternal(module);
         }
     }),

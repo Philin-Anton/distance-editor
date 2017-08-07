@@ -17,4 +17,3 @@ module.exports = __webpack_require__(110);
 /***/ })
 
 },[114]);
-//# sourceMappingURL=vendors-web.bundle.js.map

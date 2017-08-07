@@ -4,11 +4,11 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --env=development",
-    "build:test": "node_modules/.bin/webpack --env=test-production",
-    "build:prod": "node_modules/.bin/webpack --env=production",
+    "start": "node_modules/.bin/webpack-dev-server --env=dev",
+    "build:test": "node_modules/.bin/webpack --env=test-prod",
+    "build:prod": "node_modules/.bin/webpack --env=prod",
     "prod": "npm run clean & npm run build:prod",
-    "build:watch": "node_modules/.bin/webpack --env=production -w",
+    "build:watch": "node_modules/.bin/webpack --env=prod -w",
     "clean": "rimraf ./dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/Philin-Anton/distance-editor.git"
   },
-  "author": "Anton Philin, Paul Anosov",
+  "author": "Anton Philin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Philin-Anton/distance-editor/issues"
@@ -33,7 +33,7 @@
     "es6-promise": "^4.1.1",
     "eslint": "^4.2.0",
     "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "^2.1.2",
+    "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.29.0",
     "node-sass": "^4.5.3",
     "react-router": "^4.1.1",

@@ -43,10 +43,10 @@ export function injectAsyncReducers(asyncReducers:any) {
   replaceReducers(rootReducer);
 }
 
-// hot reloading for reducers
-if (module.hot) {
-  module.hot.accept('../reducers/rootReducer', () => {
-    const nextReducer:any = require('../reducers/rootReducer').default; // eslint-disable-line
-    replaceReducers(nextReducer);
-  });
-}
+// // hot reloading for reducers
+// if (module.hot) {
+//   module.hot.accept('../reducers/rootReducer', () => {
+//     const nextReducer:any = require('../reducers/rootReducer').default; // eslint-disable-line
+//     replaceReducers(nextReducer);
+//   });
+// }
