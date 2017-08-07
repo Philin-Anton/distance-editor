@@ -26,18 +26,6 @@ const config = Object.assign({}, baseConfig, {
   devtool: "cheap-source-map",
   plugins: [
     new ProgressBarPlugin(),
-    new webpack.ProvidePlugin({
-        "react": "react",
-        "prop-types": "prop-types",
-        "redux": "redux",
-        "redux-thunk": "redux-thunk",
-        "redux-logger": "redux-logger",
-        "react-hot-loader": "react-hot-loader",
-        "react-redux": "react-redux",
-        "react-dom": "react-dom",
-        "react-router-dom": "react-router-dom",
-        "Promise": 'imports?this=>global!exports?global.Promise!es6-promise'
-    }),
     new WebpackNotifierPlugin({ alwaysNotify: true }),
     new webpack.optimize.UglifyJsPlugin({
         warnings: false,
@@ -73,7 +61,7 @@ const config = Object.assign({}, baseConfig, {
         hash: true,
         template: "./index.html"
     }),
-    new ExtractTextPlugin('style-[contenthash:8].css')
+    new ExtractTextPlugin('./stylesheet/style-[contenthash:8].css')
   ]
 });
 

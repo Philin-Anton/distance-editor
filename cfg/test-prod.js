@@ -74,7 +74,7 @@ const config = Object.assign({}, baseConfig, {
         hash: true,
         template: "./index.html"
     }),
-    new ExtractTextPlugin('style-[contenthash:8].css')
+    new ExtractTextPlugin('./stylesheet/style-[contenthash:8].css')
   ]
 });
 
